@@ -13,7 +13,7 @@ export default function MSWProvider({ children }: MSWProviderProps) {
 		const initMSW = async () => {
 			if (
 				process.env.NODE_ENV === 'development' &&
-				process.env.NEXT_PUBLIC_MSW_ENABLED
+				process.env.NEXT_PUBLIC_MSW_ENABLED === 'true'
 			) {
 				if (typeof window === 'undefined') {
 					const { server } = await import('@/mocks/server');
@@ -25,8 +25,8 @@ export default function MSWProvider({ children }: MSWProviderProps) {
 						serviceWorker: { url: '/mockServiceWorker.js' },
 					});
 				}
-				setMswReady(true);
 			}
+			setMswReady(true);
 		};
 
 		initMSW();
