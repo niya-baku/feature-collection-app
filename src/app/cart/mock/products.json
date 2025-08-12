@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "スマートフォン",
+    "price": 89800,
+    "image": "/images/smartphone.jpg",
+    "description": "最新の高性能スマートフォン。カメラ機能が充実しています。"
+  },
+  {
+    "id": 2,
+    "name": "ワイヤレスイヤホン",
+    "price": 12800,
+    "image": "/images/earphones.jpg",
+    "description": "ノイズキャンセリング機能付きの高音質ワイヤレスイヤホン。"
+  },
+  {
+    "id": 3,
+    "name": "ノートパソコン",
+    "price": 128000,
+    "image": "/images/laptop.jpg",
+    "description": "軽量で高性能なノートパソコン。プログラミングに最適です。"
+  },
+  {
+    "id": 4,
+    "name": "スマートウォッチ",
+    "price": 35800,
+    "image": "/images/smartwatch.jpg",
+    "description": "健康管理機能が充実したスマートウォッチ。"
+  },
+  {
+    "id": 5,
+    "name": "タブレット",
+    "price": 68000,
+    "image": "/images/tablet.jpg",
+    "description": "10インチの高解像度タブレット。動画視聴や読書に最適。"
+  },
+  {
+    "id": 6,
+    "name": "Bluetoothスピーカー",
+    "price": 8800,
+    "image": "/images/speaker.jpg",
+    "description": "コンパクトで高音質なBluetoothスピーカー。防水機能付き。"
+  }
+]

@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "name": "アイテム 1",
+    "image": "/images/smartphone.jpg"
+  },
+  {
+    "id": 2,
+    "name": "アイテム 2",
+    "image": "/images/earphones.jpg"
+  },
+  {
+    "id": 3,
+    "name": "アイテム 3",
+    "image": "/images/laptop.jpg"
+  },
+  {
+    "id": 4,
+    "name": "アイテム 4",
+    "image": "/images/smartwatch.jpg"
+  },
+  {
+    "id": 5,
+    "name": "アイテム 5",
+    "image": "/images/tablet.jpg"
+  },
+  {
+    "id": 6,
+    "name": "アイテム 6",
+    "image": "/images/speaker.jpg"
+  },
+  {
+    "id": 7,
+    "name": "アイテム 7",
+    "image": "/images/smartphone.jpg"
+  },
+  {
+    "id": 8,
+    "name": "アイテム 8",
+    "image": "/images/earphones.jpg"
+  },
+  {
+    "id": 9,
+    "name": "アイテム 9",
+    "image": "/images/laptop.jpg"
+  },
+  {
+    "id": 10,
+    "name": "アイテム 10",
+    "image": "/images/smartwatch.jpg"
+  },
+  {
+    "id": 11,
+    "name": "アイテム 11",
+    "image": "/images/tablet.jpg"
+  },
+  {
+    "id": 12,
+    "name": "アイテム 12",
+    "image": "/images/speaker.jpg"
+  },
+  {
+    "id": 13,
+    "name": "アイテム 13",
+    "image": "/images/smartphone.jpg"
+  },
+  {
+    "id": 14,
+    "name": "アイテム 14",
+    "image": "/images/earphones.jpg"
+  },
+  {
+    "id": 15,
+    "name": "アイテム 15",
+    "image": "/images/laptop.jpg"
+  },
+  {
+    "id": 16,
+    "name": "アイテム 16",
+    "image": "/images/smartwatch.jpg"
+  },
+  {
+    "id": 17,
+    "name": "アイテム 17",
+    "image": "/images/tablet.jpg"
+  },
+  {
+    "id": 18,
+    "name": "アイテム 18",
+    "image": "/images/speaker.jpg"
+  },
+  {
+    "id": 19,
+    "name": "アイテム 19",
+    "image": "/images/smartphone.jpg"
+  },
+  {
+    "id": 20,
+    "name": "アイテム 20",
+    "image": "/images/earphones.jpg"
+  },
+  {
+    "id": 21,
+    "name": "アイテム 21",
+    "image": "/images/laptop.jpg"
+  },
+  {
+    "id": 22,
+    "name": "アイテム 22",
+    "image": "/images/smartwatch.jpg"
+  },
+  {
+    "id": 23,
+    "name": "アイテム 23",
+    "image": "/images/tablet.jpg"
+  },
+  {
+    "id": 24,
+    "name": "アイテム 24",
+    "image": "/images/speaker.jpg"
+  },
+  {
+    "id": 25,
+    "name": "アイテム 25",
+    "image": "/images/smartphone.jpg"
+  },
+  {
+    "id": 26,
+    "name": "アイテム 26",
+    "image": "/images/earphones.jpg"
+  },
+  {
+    "id": 27,
+    "name": "アイテム 27",
+    "image": "/images/laptop.jpg"
+  },
+  {
+    "id": 28,
+    "name": "アイテム 28",
+    "image": "/images/smartwatch.jpg"
+  },
+  {
+    "id": 29,
+    "name": "アイテム 29",
+    "image": "/images/tablet.jpg"
+  },
+  {
+    "id": 30,
+    "name": "アイテム 30",
+    "image": "/images/speaker.jpg"
+  }
+]

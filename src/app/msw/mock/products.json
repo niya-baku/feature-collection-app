@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "スマートフォン",
+    "price": 89800,
+    "image": "/images/smartphone.jpg",
+    "description": "最新の高性能スマートフォン。カメラ機能が充実しています。",
+    "category": "electronics",
+    "inStock": true,
+    "rating": 4.5,
+    "reviews": 128
+  },
+  {
+    "id": 2,
+    "name": "ワイヤレスイヤホン",
+    "price": 12800,
+    "image": "/images/earphones.jpg",
+    "description": "ノイズキャンセリング機能付きの高音質ワイヤレスイヤホン。",
+    "category": "electronics",
+    "inStock": true,
+    "rating": 4.3,
+    "reviews": 89
+  },
+  {
+    "id": 3,
+    "name": "ノートパソコン",
+    "price": 128000,
+    "image": "/images/laptop.jpg",
+    "description": "軽量で高性能なノートパソコン。プログラミングに最適です。",
+    "category": "electronics",
+    "inStock": false,
+    "rating": 4.7,
+    "reviews": 234
+  },
+  {
+    "id": 4,
+    "name": "スマートウォッチ",
+    "price": 35800,
+    "image": "/images/smartwatch.jpg",
+    "description": "健康管理機能が充実したスマートウォッチ。",
+    "category": "electronics",
+    "inStock": true,
+    "rating": 4.1,
+    "reviews": 67
+  },
+  {
+    "id": 5,
+    "name": "タブレット",
+    "price": 68000,
+    "image": "/images/tablet.jpg",
+    "description": "10インチの高解像度タブレット。動画視聴や読書に最適。",
+    "category": "electronics",
+    "inStock": true,
+    "rating": 4.4,
+    "reviews": 156
+  },
+  {
+    "id": 6,
+    "name": "Bluetoothスピーカー",
+    "price": 8800,
+    "image": "/images/speaker.jpg",
+    "description": "コンパクトで高音質なBluetoothスピーカー。防水機能付き。",
+    "category": "electronics",
+    "inStock": true,
+    "rating": 4.2,
+    "reviews": 93
+  }
+]
