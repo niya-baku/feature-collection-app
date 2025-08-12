@@ -1,40 +1,17 @@
 'use client';
 
-import useSWR from 'swr';
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Header from '@/components/layout/Header';
-import type {
-	Product,
-	APIResponse,
-	ProductListResponse,
-	CartItem,
-} from '@/types/api';
+import type { Product, CartItem } from '@/types/api';
+import { useProductsFromJSON } from './hooks/fetch';
 import ShadcnCartModal from './ShadcnCartModal';
-
-// SWR用のfetcher関数
-const fetcher = async (url: string): Promise<Product[]> => {
-	const response = await fetch(url);
-	const data: APIResponse<ProductListResponse> = await response.json();
-	
-	if (data.status === 'success') {
-		return data.data.products;
-	}
-	throw new Error(data.message);
-};
 
 export default function SWRDemoPage() {
 	const [cartItems, setCartItems] = useState<CartItem[]>([]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
-
-	// SWRを使用してデータを取得（設定オプション付き）
-	const { data: products, error, isLoading, mutate } = useSWR('/api/v2/products', fetcher, {
-		refreshInterval: 60000, // 1分ごとに自動更新
-		revalidateOnFocus: true, // フォーカス時に再検証
-		revalidateOnReconnect: true, // 再接続時に再検証
-		dedupingInterval: 10000, // 10秒間は重複リクエストを防ぐ
-	});
-
+	const { data: products, error, isLoading, mutate } = useProductsFromJSON();
 
 	// カートに商品を追加
 	const addToCart = (product: Product) => {
@@ -82,35 +59,49 @@ export default function SWRDemoPage() {
 			<div className="container mx-auto px-4 py-8">
 				<div className="mb-8">
 					<div className="flex justify-between items-center mb-6">
-						<h1 className="text-3xl font-bold text-gray-800">
-							SWRデモ
-						</h1>
-						<button
-							type="button"
-							onClick={() => mutate()}
-							className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
-						>
-							データを再取得
-						</button>
+						<h1 className="text-3xl font-bold text-gray-800">SWRデモ</h1>
+						<div className="flex gap-2">
+							<Link
+								href="/swr/infinite"
+								className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 transition-colors inline-flex items-center"
+							>
+								無限スクロール
+							</Link>
+							<button
+								type="button"
+								onClick={() => mutate()}
+								className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+							>
+								データを再取得
+							</button>
+						</div>
 					</div>
 
 					{/* SWRの状態表示 */}
 					<div className="bg-white rounded-lg shadow-md p-4 mb-6">
 						<h2 className="text-lg font-semibold mb-2">SWRの状態</h2>
 						<div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-							<div className={`p-2 rounded ${isLoading ? 'bg-yellow-100' : 'bg-gray-100'}`}>
+							<div
+								className={`p-2 rounded ${isLoading ? 'bg-yellow-100' : 'bg-gray-100'}`}
+							>
 								<span className="font-medium">Loading: </span>
-								<span className={isLoading ? 'text-yellow-600' : 'text-gray-600'}>
+								<span
+									className={isLoading ? 'text-yellow-600' : 'text-gray-600'}
+								>
 									{isLoading ? 'true' : 'false'}
 								</span>
 							</div>
-							<div className={`p-2 rounded ${error ? 'bg-red-100' : 'bg-gray-100'}`}>
+							<div
+								className={`p-2 rounded ${error ? 'bg-red-100' : 'bg-gray-100'}`}
+							>
 								<span className="font-medium">Error: </span>
 								<span className={error ? 'text-red-600' : 'text-gray-600'}>
 									{error ? 'あり' : 'なし'}
 								</span>
 							</div>
-							<div className={`p-2 rounded ${products ? 'bg-green-100' : 'bg-gray-100'}`}>
+							<div
+								className={`p-2 rounded ${products ? 'bg-green-100' : 'bg-gray-100'}`}
+							>
 								<span className="font-medium">Data: </span>
 								<span className={products ? 'text-green-600' : 'text-gray-600'}>
 									{products ? `${products.length}件` : 'なし'}
@@ -172,55 +163,57 @@ export default function SWRDemoPage() {
 					{products && (
 						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 							{products.map((product) => (
-							<div
-								key={product.id}
-								className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-							>
-								<div className="relative w-full h-48 bg-gray-100">
-									<Image
-										src={product.image}
-										alt={product.name}
-										fill
-										className="object-cover"
-										onError={(e) => {
-											// 画像が見つからない場合のプレースホルダー
-											e.currentTarget.src = `https://via.placeholder.com/300x200?text=${encodeURIComponent(product.name)}`;
-										}}
-									/>
-								</div>
-								<div className="p-4 flex flex-col flex-1">
-									<h3 className="text-lg font-semibold mb-2">{product.name}</h3>
-									<p className="text-gray-600 text-sm mb-3">
-										{product.description}
-									</p>
-									<div className="flex items-center justify-between">
-										<span className="text-xl font-bold text-blue-600">
-											¥{product.price.toLocaleString()}
-										</span>
-										<button
-											type="button"
-											onClick={() => addToCart(product)}
-											className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2"
-										>
-											<svg
-												role="image"
-												className="w-4 h-4"
-												fill="none"
-												stroke="currentColor"
-												viewBox="0 0 24 24"
+								<div
+									key={product.id}
+									className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+								>
+									<div className="relative w-full h-48 bg-gray-100">
+										<Image
+											src={product.image}
+											alt={product.name}
+											fill
+											className="object-cover"
+											onError={(e) => {
+												// 画像が見つからない場合のプレースホルダー
+												e.currentTarget.src = `https://via.placeholder.com/300x200?text=${encodeURIComponent(product.name)}`;
+											}}
+										/>
+									</div>
+									<div className="p-4 flex flex-col flex-1">
+										<h3 className="text-lg font-semibold mb-2">
+											{product.name}
+										</h3>
+										<p className="text-gray-600 text-sm mb-3">
+											{product.description}
+										</p>
+										<div className="flex items-center justify-between">
+											<span className="text-xl font-bold text-blue-600">
+												¥{product.price.toLocaleString()}
+											</span>
+											<button
+												type="button"
+												onClick={() => addToCart(product)}
+												className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2"
 											>
-												<path
-													strokeLinecap="round"
-													strokeLinejoin="round"
-													strokeWidth={2}
-													d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-												/>
-											</svg>
-											カートに追加
-										</button>
+												<svg
+													role="image"
+													className="w-4 h-4"
+													fill="none"
+													stroke="currentColor"
+													viewBox="0 0 24 24"
+												>
+													<path
+														strokeLinecap="round"
+														strokeLinejoin="round"
+														strokeWidth={2}
+														d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+													/>
+												</svg>
+												カートに追加
+											</button>
+										</div>
 									</div>
 								</div>
-							</div>
 							))}
 						</div>
 					)}
