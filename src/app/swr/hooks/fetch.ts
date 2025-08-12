@@ -1,20 +1,12 @@
-import type { APIResponse, Product, ProductListResponse } from "@/types/api";
+import type { ProductListResponse } from "@/types/api";
+import { createFetcher } from "@/lib/api";
 import useSWR from "swr"
 
 
 export const useProducts = () => {
-  const path = '/api/v2/products'
+  const path = '/products'
 
-  // SWR用のfetcher関数
-  const fetcher = async (): Promise<Product[]> => {
-    const response = await fetch(path)
-    const data: APIResponse<ProductListResponse> = await response.json();
-    
-    if (data.status === 'success') {
-      return data.data.products;
-    }
-    throw new Error(data.message);
-  };
+  const fetcher = createFetcher<ProductListResponse>(path);
 
   	// SWRを使用してデータを取得（設定オプション付き）
 	const { data, error, isLoading, mutate } = useSWR(path, fetcher, {
@@ -26,7 +18,7 @@ export const useProducts = () => {
 
 
   return {
-    data,
+    data: data?.products,
     error,
     isLoading,
     mutate
