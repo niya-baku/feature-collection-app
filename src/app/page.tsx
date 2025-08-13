@@ -37,6 +37,12 @@ const features = [
 		href: '/swr',
 		color: 'bg-indigo-500 hover:bg-indigo-600',
 	},
+	{
+		title: 'TanStack Queryデモ',
+		description: 'TanStack Queryを使用したデータフェッチングデモ',
+		href: '/tanstack',
+		color: 'bg-indigo-800 hover:bg-indigo-900',
+	},
 ];
 
 export default function Home() {
