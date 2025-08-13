@@ -9,7 +9,7 @@ import type {
 	ProductListResponse,
 	MSWCartItem,
 } from '@/types/msw';
-import ShadcnCartModal from './ShadcnCartModal';
+import ShadcnCartModal from '@/components/ShadcnCartModal';
 
 export default function MSWDemoPage() {
 	const [products, setProducts] = useState<MSWProduct[]>([]);

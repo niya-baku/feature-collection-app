@@ -8,10 +8,10 @@ import type { Product, CartItem } from '@/types/api';
 import { useProductsFromJSON } from './hooks/fetch';
 import ShadcnCartModal from '@/components/ShadcnCartModal';
 
-export default function SWRDemoPage() {
+export default function TanStackQueryDemoPage() {
 	const [cartItems, setCartItems] = useState<CartItem[]>([]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const { data: products, error, isLoading, mutate } = useProductsFromJSON();
+	const { data: products, error, isLoading, refetch } = useProductsFromJSON();
 
 	// カートに商品を追加
 	const addToCart = (product: Product) => {
@@ -59,17 +59,11 @@ export default function SWRDemoPage() {
 			<div className="container mx-auto px-4 py-8">
 				<div className="mb-8">
 					<div className="flex justify-between items-center mb-6">
-						<h1 className="text-3xl font-bold text-gray-800">SWRデモ</h1>
+						<h1 className="text-3xl font-bold text-gray-800">TanStack Queryデモ</h1>
 						<div className="flex gap-2">
-							<Link
-								href="/swr/infinite"
-								className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 transition-colors inline-flex items-center"
-							>
-								無限スクロール
-							</Link>
 							<button
 								type="button"
-								onClick={() => mutate()}
+								onClick={() => refetch()}
 								className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
 							>
 								データを再取得
@@ -77,9 +71,9 @@ export default function SWRDemoPage() {
 						</div>
 					</div>
 
-					{/* SWRの状態表示 */}
+					{/* TanStack Queryの状態表示 */}
 					<div className="bg-white rounded-lg shadow-md p-4 mb-6">
-						<h2 className="text-lg font-semibold mb-2">SWRの状態</h2>
+						<h2 className="text-lg font-semibold mb-2">TanStack Queryの状態</h2>
 						<div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
 							<div
 								className={`p-2 rounded ${isLoading ? 'bg-yellow-100' : 'bg-gray-100'}`}
@@ -108,8 +102,8 @@ export default function SWRDemoPage() {
 								</span>
 							</div>
 							<div className="p-2 rounded bg-blue-100">
-								<span className="font-medium">Auto Refresh: </span>
-								<span className="text-blue-600">60秒</span>
+								<span className="font-medium">Cache Time: </span>
+								<span className="text-blue-600">10分</span>
 							</div>
 						</div>
 					</div>
@@ -147,7 +141,7 @@ export default function SWRDemoPage() {
 					{error && (
 						<div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
 							<h3 className="font-medium text-red-800 mb-2">エラー</h3>
-							<p className="text-red-700">{error}</p>
+							<p className="text-red-700">{error.message}</p>
 						</div>
 					)}
 
